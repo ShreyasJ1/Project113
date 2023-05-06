@@ -16,9 +16,15 @@ circle(60,60,80);
 circle(740,60,80);
 circle(60,740,80);
 circle(740,740,80);
-rect(40, 40, 40,700);
-rect(720,40,40,700);
-rect(40,720,700,40);
-rect(40,40,700,40);
+fill('green')
+stroke('green')
+rect(40, 95, 40,610);
+rect(720,95,40,610);//
+rect(95,720,610,40);//
+rect(95,40,610,40);//
 
+}
+
+function take_snapshot() {
+save('Image1.png');
 }
