@@ -1,24 +1,37 @@
 function preload() {
-    img = loadImage('https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1600');
 
 }
 
 function setup() {
-    canvas = createCanvas(800, 800);
+    canvas = createCanvas(300, 300);
     canvas.center();
+
+    video = createCapture(VIDEO);
+    video.size(300, 300);
+    video.hide();
+
+    poseNet = ml5.poseNet(video, modelLoaded);
+    poseNet.on('pose',gotPoses);
+}
+
+function gotPoses(results) {
+if(results.length > 0){
+console.log(results);
+console.log("nose x = "+ results[0].pose.nose.x);
+console.log("nose y = "+ results[0].pose.nose.y);
+
+}
+}
+
+function modelLoaded() {
+    console.log('PoseNet is initialised');
 }
 
 function draw() {
-image(img,300,300,200,200);
-fill(255,0,0);
-stroke(255,0,0);
-circle(60,60,80);
-circle(740,60,80);
-circle(60,740,80);
-circle(740,740,80);
-rect(40, 40, 40,700);
-rect(720,40,40,700);
-rect(40,720,700,40);
-rect(40,40,700,40);
+    image(video, 0, 0, 300, 300);
+}
+
+function take_snapshot() {
+    save('Image1.png');
 
 }
